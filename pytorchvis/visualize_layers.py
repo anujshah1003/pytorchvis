@@ -67,7 +67,7 @@ class VisualizeLayers(object):
         '''
         return self.interm_output.keys()
     
-    def plot_featuremaps(self,featuremaps,name='featuremaps',savefig=False,figsize=12):
+    def plot_featuremaps(self,featuremaps,name='featuremaps',color_map='gray',savefig=False,figsize=12):
         '''
         function to plot the feature maps of an intermediate layer
         Args:
@@ -75,6 +75,7 @@ class VisualizeLayers(object):
                        representing (Batch_size, num_featuremaps,
                        height of each featuremap,width of each featuremap)
             name: (string) - name of the feature map
+            color_map: (string) - 'gray' or 'viridis'
             savefig: (Bool) - True or False , whether or not you want to save 
                       the fig
             figsize: (int) - figure size in th form of (figsize,figsize)
@@ -90,20 +91,24 @@ class VisualizeLayers(object):
             #print(filt[0, :, :])
             plt.subplot(subplot_num,subplot_num, idx + 1)
     #        plt.subplot(subplot_r,subplot_c, idx + 1)
-            plt.imshow(f_map)#,cmap='gray')
+            plt.imshow(f_map,cmap=color_map)
             plt.axis('off')
         fig.show()
-        fig.savefig("output_imgs/-{}".format(name) + '.jpg')
+        plt.savefig("output_imgs/{}".format(name) + '.jpg')
 
 #%%        
 if __name__=='__main__':  
+    
+    # get the device on which the model is going to run
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
     # load the Pytorch model
-    model = models.alexnet(pretrained=True)
+    model = models.alexnet(pretrained=True).to(device)
     # create an object of VisualizeLayers and initialize it with the model and 
     # the layers whose output you want to visualize
     vis = VisualizeLayers(model,layers='conv')
     # load the input
-    x = torch.randn([1,3,224,224])
+    x = torch.randn([1,3,224,224]).to(device)
     # pass the input and get the output
     output = model(x)
     # get the intermediate layers output which was passed during initialization
@@ -112,7 +117,8 @@ if __name__=='__main__':
     # plot the featuremap of the layer which you want, to see what are the layers
     # saved simply call vis.get_saved_layer_names
     vis.get_saved_layer_names()
-    vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='fmaps',savefig=True)
+    
+    vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='noise_inpt_fmap-1',color_map='gray',savefig=True)
     
     
 
