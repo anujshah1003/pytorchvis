@@ -48,4 +48,4 @@ git clone https://github.com/anujshah1003/pytorchvis
 
 ```
 #### the 64 featurmap from the first conv layer with a random input
-![alt text](https://github.com/anujshah1003/pytorchvis/tree/master/pytorchvis/output_imgs/noise_inpt_fmap-1.jpg)
+![feature map](https://github.com/anujshah1003/pytorchvis/tree/master/pytorchvis/output_imgs/noise_inpt_fmap-1.jpg)
