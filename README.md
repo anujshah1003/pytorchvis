@@ -51,5 +51,7 @@ git clone https://github.com/anujshah1003/pytorchvis
 ![](https://github.com/anujshah1003/pytorchvis/blob/master/pytorchvis/output_imgs/noise_inpt_fmap-1.jpg)
 
 ###Reference:
+
 ptrblck hook function from - https://discuss.pytorch.org/t/visualize-feature-map/29597
+
 Library Motivation - https://github.com/sksq96/pytorch-summary
