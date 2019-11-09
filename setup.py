@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pytorchvis",
-    version="0.0.1dev",
+    version="0.0.2",
     author="Anuj Shah",
     author_email="anujonline645@gmail.com",
     description="A package to visualize CNN in PyTorch",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/anujshah1003/pytorchvis",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
