@@ -8,7 +8,7 @@ git clone https://github.com/anujshah1003/pytorchvis
 ```
 ## Usage
 ```
-  from pytorch.visualize_layers import VisualizeLayers
+  from pytorchvis.visualize_layers import VisualizeLayers
 
   # create an object of VisualizeLayers and initialize it with the model and 
   # the layers whose output you want to visualize        
