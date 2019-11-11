@@ -99,16 +99,13 @@ class VisualizeLayers(object):
 #%%        
 if __name__=='__main__':  
     
-    # get the device on which the model is going to run
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
     # load the Pytorch model
-    model = models.alexnet(pretrained=True).to(device)
+    model = models.alexnet(pretrained=True)
     # create an object of VisualizeLayers and initialize it with the model and 
     # the layers whose output you want to visualize
     vis = VisualizeLayers(model,layers='conv')
     # load the input
-    x = torch.randn([1,3,224,224]).to(device)
+    x = torch.randn([1,3,224,224])
     # pass the input and get the output
     output = model(x)
     # get the intermediate layers output which was passed during initialization
