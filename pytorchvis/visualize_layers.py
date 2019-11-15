@@ -102,6 +102,7 @@ class VisualizeLayers(object):
                 color_map='viridis'
             plt.imshow(f_map,cmap=color_map)
             plt.axis('off')
+        print ('Number of output maps: {}'.format(num_feat_maps))
         fig.show()
         plt.savefig("output_imgs/{}".format(name) + '.jpg')
 
