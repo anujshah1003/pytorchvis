@@ -50,7 +50,21 @@ git clone https://github.com/anujshah1003/pytorchvis
 #### the 64 featurmap from the first conv layer with a random input
 ![](https://github.com/anujshah1003/pytorchvis/blob/master/pytorchvis/output_imgs/noise_inpt_fmap-1.jpg)
 
-### Reference:
+## Naming convention of the saved intermediate layers
+
+layer name and its sublayers are separated by . (dot) for e.g
+```
+  features.0  - layer 0 is a sub layer of layer features
+  features.feat1.conv1 - conv1 is the layer name whic is a sub layer of feat1 which further is the sub layer of features
+```
+the class and type of layer is given by underscore after the layer name for e.g.
+```
+features._feat1.conv1_conv_Conv2D - this layer name is conv1 and its is from class conv and its type is Conv2d
+features.0_conv_Conv2D - this layer name is 0 and its from class conv and its type is Conv2D
+```
+
+
+## Reference:
 
 ptrblck hook function from - https://discuss.pytorch.org/t/visualize-feature-map/29597
 
