@@ -134,6 +134,7 @@ classifier_container_Sequential
 ```
 To get the saved layer names
 ```
+vis = VisualizeLayers(model,layers='conv')
 vis.get_saved_layer_names()
 
 ['features.0_conv_Conv2d',
