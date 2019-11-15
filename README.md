@@ -53,6 +53,14 @@ git clone https://github.com/anujshah1003/pytorchvis
 #### the 64 featurmap from the first conv layer with a random input
 ![](https://github.com/anujshah1003/pytorchvis/blob/master/pytorchvis/output_imgs/noise_inpt_fmap-1.jpg)
 
+## options for plot_featuremaps
+savefig = True - it will save the feature map as given in name in the folder output_imgs
+
+you can plot the colored version of the feature map with argument of color_map = 'gray' or 'color'
+```
+vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='fmaps_color',color_map ='color',savefig=True)
+```
+
 ## Naming convention of the saved intermediate layers
 
 layer name and its sublayers are separated by . (dot) for e.g
