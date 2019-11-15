@@ -7,6 +7,9 @@ pip install pytorchvis
 git clone https://github.com/anujshah1003/pytorchvis
 ```
 ## Usage
+
+The demo notebook - [demo.ipynb](https://github.com/anujshah1003/pytorchvis/blob/master/demo.ipynb)
+
 ```
   from pytorchvis.visualize_layers import VisualizeLayers
 
@@ -60,6 +63,7 @@ you can plot the colored version of the feature map with argument of color_map =
 ```
 vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='fmaps_color',color_map ='color',savefig=True)
 ```
+![](https://github.com/anujshah1003/pytorchvis/blob/master/pytorchvis/output_imgs/noise_inpt_color_fmap-1.jpg)
 
 ## Naming convention of the saved intermediate layers
 
