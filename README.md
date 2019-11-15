@@ -46,7 +46,7 @@ git clone https://github.com/anujshah1003/pytorchvis
 
   # plot the featuremap of the layer which you want, to see what are the layers
   # saved simply call vis.get_saved_layer_names
-  vis.get_saved_layer_names()
+  vis.get_saved_layer_names() # the key values of the dictionary interm_output
   vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='fmaps',savefig=True)
 
 ```
