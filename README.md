@@ -22,7 +22,10 @@ git clone https://github.com/anujshah1003/pytorchvis
 
   # plot the featuremap of the layer which you want,
   vis.plot_featuremaps(interm_output[layer_name],name='fmaps',savefig=True)
+  
 ```
+##### interm_output is the dictionary which stores the intermediate putput. It's keys are the layer names and its values are the respective output of the intermediate layers.
+
 ## Example
 ### Using Pretrained Alexnet
 ```
