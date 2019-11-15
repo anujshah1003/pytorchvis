@@ -54,15 +54,80 @@ git clone https://github.com/anujshah1003/pytorchvis
 
 layer name and its sublayers are separated by . (dot) for e.g
 ```
-  features.0  - layer 0 is a sub layer of layer features
-  features.feat1.conv1 - conv1 is the layer name whic is a sub layer of feat1 which further is the sub layer of features
+  features.0  - layer 0 is a sub layer of layer features.
+  features.feat1.conv1 - conv1 is the layer name whic is a sub layer of feat1 which further
+  is the sub layer of features.
 ```
 the class and type of layer is given by underscore after the layer name for e.g.
 ```
 features._feat1.conv1_conv_Conv2D - this layer name is conv1 and its is from class conv and its type is Conv2d
 features.0_conv_Conv2D - this layer name is 0 and its from class conv and its type is Conv2D
 ```
+Another example, say you have an alex net model and then you print the model to see all the layers
+```
+  model = models.alexnet(pretrained=True)
+  print(model)
+  
+  # this are your layers in the Alexnet model
+  
+  AlexNet(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(11, 11), stride=(4, 4), padding=(2, 2))
+    (1): ReLU(inplace)
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 192, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (4): ReLU(inplace)
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace)
+    (8): Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace)
+    (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace)
+    (12): MaxPool2d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(6, 6))
+  (classifier): Sequential(
+    (0): Dropout(p=0.5)
+    (1): Linear(in_features=9216, out_features=4096, bias=True)
+    (2): ReLU(inplace)
+    (3): Dropout(p=0.5)
+    (4): Linear(in_features=4096, out_features=4096, bias=True)
+    (5): ReLU(inplace)
+    (6): Linear(in_features=4096, out_features=1000, bias=True)
+  )
+)
+  
+ Now if you call 
+ vis = VisualizeLayers(model,layers='all')
+ 
+ The layer names that are going to be saved along with their respective output are 
+ 
+ features_container_Sequential
+         features.0_conv_Conv2d
+         features.1_activation_ReLU
+         features.2_pooling_MaxPool2d
+         features.3_conv_Conv2d
+         features.4_activation_ReLU
+         features.5_pooling_MaxPool2d
+         features.6_conv_Conv2d
+         features.7_activation_ReLU
+         features.8_conv_Conv2d
+         features.9_activation_ReLU
+         features.10_conv_Conv2d
+         features.11_activation_ReLU
+         features.12_pooling_MaxPool2d
+avgpool_pooling_AdaptiveAvgPool2d
+classifier_container_Sequential
+         classifier.0_dropout_Dropout
+         classifier.1_linear_Linear
+         classifier.2_activation_ReLU
+         classifier.3_dropout_Dropout
+         classifier.4_linear_Linear
+         classifier.5_activation_ReLU
+         classifier.6_linear_Linear
 
+```
 
 ## Reference:
 
