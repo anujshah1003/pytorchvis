@@ -14,6 +14,7 @@ class VisualizeLayers(object):
         self.model = model
         self.layers = layers
         self.interm_output = {}
+        self.saved_layer_names=[]
         self.hook_layers(self.model)
         if not os.path.exists('output_imgs'):
             os.makedirs('output_imgs')
@@ -37,14 +38,18 @@ class VisualizeLayers(object):
             if prev_name is None:
                 layer_name=name+'_{}_{}'.format(layer_type,layer_sub_type)
                 print (layer_name)
+                #self.layer_names.append(layer_name)
             else:
                 layer_name = '{}.{}_{}_{}'.format(prev_name,name,layer_type,layer_sub_type)
                 print ('\t',layer_name)
+                #self.layer_names.append(layer_name)
             if self.layers=='all':
                 layer.register_forward_hook(self.__get_activation(layer_name))
+                self.saved_layer_names.append(layer_name)
             else:       
                 if layer_type in self.layers:
                     layer.register_forward_hook(self.__get_activation(layer_name))
+                    self.saved_layer_names.append(layer_name)
                     
             if layer._modules.items() is not None:
                 self.hook_layers(layer,prev_name=name)
@@ -63,9 +68,11 @@ class VisualizeLayers(object):
         '''
         function to get the intermediate layer names whose output are saved
         Returns:
-            self.interm_output_keys(): (dict_keys)
+            #self.interm_output_keys(): (dict_keys)
+            self.layer_names: (list) - list of all the saved layer names 
         '''
-        return self.interm_output.keys()
+#        return self.interm_output.keys()
+        return self.saved_layer_names
     
     def plot_featuremaps(self,featuremaps,name='featuremaps',color_map='gray',savefig=False,figsize=12):
         '''
@@ -75,7 +82,7 @@ class VisualizeLayers(object):
                        representing (Batch_size, num_featuremaps,
                        height of each featuremap,width of each featuremap)
             name: (string) - name of the feature map
-            color_map: (string) - 'gray' or 'viridis'
+            color_map: (string) - 'gray' or 'color' - 'color' is 'viridis' format
             savefig: (Bool) - True or False , whether or not you want to save 
                       the fig
             figsize: (int) - figure size in th form of (figsize,figsize)
@@ -91,6 +98,8 @@ class VisualizeLayers(object):
             #print(filt[0, :, :])
             plt.subplot(subplot_num,subplot_num, idx + 1)
     #        plt.subplot(subplot_r,subplot_c, idx + 1)
+            if color_map=='color':
+                color_map='viridis'
             plt.imshow(f_map,cmap=color_map)
             plt.axis('off')
         fig.show()
@@ -115,7 +124,7 @@ if __name__=='__main__':
     # saved simply call vis.get_saved_layer_names
     vis.get_saved_layer_names()
     
-    vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='noise_inpt_fmap-1',color_map='gray',savefig=True)
+    vis.plot_featuremaps(interm_output['features.0_conv_Conv2d'],name='noise_inpt_color_fmap-1',color_map='color',savefig=True)
     
     
 
