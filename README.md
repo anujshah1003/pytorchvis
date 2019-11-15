@@ -102,9 +102,11 @@ Another example, say you have an alex net model and then you print the model to 
 )
   
  Now if you call 
- vis = VisualizeLayers(model,layers='all')
+ vis = VisualizeLayers(model,layers='conv')
  
- The layer names that are going to be saved along with their respective output are 
+ The layer names that are registered as below and depending on the layers argument in 
+ VisualizeLayers(layers='all' or layers='conv' or layers='activation'), the respective intermediate 
+ layers output will be saved in interm_output = vis.get_interm_output() 
  
  features_container_Sequential
          features.0_conv_Conv2d
@@ -129,7 +131,17 @@ classifier_container_Sequential
          classifier.4_linear_Linear
          classifier.5_activation_ReLU
          classifier.6_linear_Linear
+```
+To get the saved layer names
+```
+vis.get_saved_layer_names()
 
+['features.0_conv_Conv2d',
+ 'features.3_conv_Conv2d',
+ 'features.6_conv_Conv2d',
+ 'features.8_conv_Conv2d',
+ 'features.10_conv_Conv2d']
+ 
 ```
 
 ## Reference:
